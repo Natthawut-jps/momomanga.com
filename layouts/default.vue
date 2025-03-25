@@ -1,27 +1,29 @@
 <template>
   <div>
-    <header class="p-4 box-border flex flex-row items-center md:gap-16 shadow-md drop-shadow-md shadow-gray-800">
+    <header
+      class="p-4 box-border flex flex-row items-center md:gap-16 shadow-[0px_5px_3px_-4px] shadow-gray-800"
+    >
       <div class="md:flex-none flex-1">
-        <img
-          class="object-cover w-full max-w-[100px]"
+        <NuxtImg
           src="/img/Logo_momo-manga.png"
+          class="object-cover w-full max-w-[100px]"
           alt=""
         />
       </div>
       <div class="hidden md:flex flex-row gap-8 items-end">
-        <div class="min-w-fit"><a href="#">หน้าแรก</a></div>
-        <div><a href="#">manga</a></div>
-        <div><a href="#">manhwa</a></div>
-        <div><a href="#">manhua</a></div>
+        <NuxtLink class="min-w-fit" :to="{ name: 'index' }">หน้าแรก</NuxtLink>
+        <NuxtLink :to="{ name: 'manga' }">manga</NuxtLink>
+        <NuxtLink :to="{ name: 'manhwa' }">manhwa</NuxtLink>
+        <NuxtLink :to="{ name: 'manhua' }">manhua</NuxtLink>
       </div>
       <div class="md:flex-1 md:inline-block flex flex-row items-center gap-4">
         <div class="flex flex-row gap-2 items-end">
           <div
-            class="hidden md:inline-block  py-1 px-2 md:p-0 bg-black/20 md:bg-transparent rounded-full cursor-pointer md:cursor-default"
+            class="hidden md:inline-block py-1 px-2 md:p-0 bg-black/20 md:bg-transparent rounded-full cursor-pointer md:cursor-default"
           >
             <UIcon name="i-fa-solid-search" class="opacity-60" />
           </div>
-          <UModal>
+          <UModal :ui="{ header: 'min-h-14', close: 'cursor-pointer' }">
             <div
               class="inline-block md:hidden py-1 px-2 md:p-0 bg-black/20 md:bg-transparent rounded-full cursor-pointer md:cursor-default"
             >
@@ -45,7 +47,11 @@
           />
         </div>
         <div class="inline-block md:hidden">
-          <USlideover title="momomanga.com" side="left">
+          <USlideover
+            title="momomanga.com"
+            side="left"
+            :ui="{ content: 'w-[80%]' }"
+          >
             <UButton
               color="neutral"
               class="cursor-pointer"
@@ -54,10 +60,10 @@
             />
             <template #body>
               <div class="flex flex-col gap-3">
-                <div><a href="#">หน้าแรก</a></div>
-                <div><a href="#">manga</a></div>
-                <div><a href="#">manhwa</a></div>
-                <div><a href="#">manhua</a></div>
+                <NuxtLink :to="{ name: 'index' }">หน้าแรก</NuxtLink>
+                <NuxtLink :to="{ name: 'manga' }">manga</NuxtLink>
+                <NuxtLink :to="{ name: 'manhwa' }">manhwa</NuxtLink>
+                <NuxtLink :to="{ name: 'manhua' }">manhua</NuxtLink>
               </div>
             </template>
           </USlideover>
@@ -66,5 +72,9 @@
     </header>
     <slot />
   </div>
-  <footer class="bg-amber-600">footer</footer>
+  <footer class="shadow-[0px_-5px_4px_-4px] shadow-gray-800">
+    <div class="p-4 box-border">
+      <p>momomanga.com</p>
+    </div>
+  </footer>
 </template>

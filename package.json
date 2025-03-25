@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@nuxt/icon": "1.11.0",
+    "@nuxt/image": "1.10.0",
     "@nuxt/ui": "^3.0.1",
     "@tailwindcss/vite": "^4.0.15",
     "@types/node": "^22.13.12",
