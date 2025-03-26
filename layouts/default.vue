@@ -1,14 +1,21 @@
+<script setup lang="ts">
+import { NuxtImg } from "#components";
+
+const sliover = ref<boolean>(false);
+</script>
 <template>
   <div>
     <header
       class="p-4 box-border flex flex-row items-center md:gap-16 shadow-[0px_5px_3px_-4px] shadow-gray-800"
     >
-      <div class="md:flex-none flex-1">
-        <NuxtImg
-          src="/img/Logo_momo-manga.png"
-          class="object-cover w-full max-w-[100px]"
-          alt=""
-        />
+      <div class="md:flex-none flex-1 w-fit">
+        <NuxtLink :to="{ name: 'index' }" class="flex flex-row w-fit">
+          <NuxtImg
+            src="/img/Logo_momo-manga.png"
+            class="object-cover w-[100px] max-w-[100px]"
+            alt=""
+          />
+        </NuxtLink>
       </div>
       <div class="hidden md:flex flex-row gap-8 items-end">
         <NuxtLink class="min-w-fit" :to="{ name: 'index' }">หน้าแรก</NuxtLink>
@@ -48,11 +55,24 @@
         </div>
         <div class="inline-block md:hidden">
           <USlideover
-            title="momomanga.com"
+            v-model:open="sliover"
             side="left"
-            :ui="{ content: 'w-[80%]' }"
+            :ui="{ content: 'w-[80%]', close: 'cursor-pointer' }"
           >
+            <template #title>
+              <NuxtLink
+                target="_top"
+                :to="{ name: 'index' }"
+                class="flex flex-row w-fit"
+              >
+                <NuxtImg
+                  src="/img/Logo_momo-manga.png"
+                  class="object-cover w-full max-w-[70px]"
+                />
+              </NuxtLink>
+            </template>
             <UButton
+              @click="sliover = true"
               color="neutral"
               class="cursor-pointer"
               variant="outline"
@@ -60,10 +80,16 @@
             />
             <template #body>
               <div class="flex flex-col gap-3">
-                <NuxtLink :to="{ name: 'index' }">หน้าแรก</NuxtLink>
-                <NuxtLink :to="{ name: 'manga' }">manga</NuxtLink>
-                <NuxtLink :to="{ name: 'manhwa' }">manhwa</NuxtLink>
-                <NuxtLink :to="{ name: 'manhua' }">manhua</NuxtLink>
+                <NuxtLink target="_top" :to="{ name: 'index' }"
+                  >หน้าแรก</NuxtLink
+                >
+                <NuxtLink target="_top" :to="{ name: 'manga' }">manga</NuxtLink>
+                <NuxtLink target="_top" :to="{ name: 'manhwa' }"
+                  >manhwa</NuxtLink
+                >
+                <NuxtLink target="_top" :to="{ name: 'manhua' }"
+                  >manhua</NuxtLink
+                >
               </div>
             </template>
           </USlideover>
@@ -73,8 +99,14 @@
     <slot />
   </div>
   <footer class="shadow-[0px_-5px_4px_-4px] shadow-gray-800">
-    <div class="p-4 box-border">
-      <p>momomanga.com</p>
+    <div class="p-4 box-border flex flex-row justify-between text-sm gap-2">
+      <div class="flex flex-row flex-wrap gap-3">
+        <NuxtLink :to="{ name: 'index' }">momomanga.com &nbsp;- </NuxtLink>
+        <NuxtLink :to="{ name: 'manga' }">manga</NuxtLink>
+        <NuxtLink :to="{ name: 'manhua' }">manhua</NuxtLink>
+        <NuxtLink :to="{ name: 'manhwa' }">manhwa</NuxtLink>
+      </div>
+      <p>Copyright © 2025</p>
     </div>
   </footer>
 </template>
